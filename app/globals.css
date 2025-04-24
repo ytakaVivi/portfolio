@@ -1,26 +1,298 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 51, 51, 51;
+  --background: 248, 245, 238;
+  --primary-color: 18, 54, 89; /* 紺色 #123659 */
+  --accent-color: 235, 232, 225;
+  --text-color: #333;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-noto), 'Noto Sans JP', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background));
+  line-height: 1.8;
+  font-family: var(--font-noto), 'Noto Sans JP', sans-serif;
+  font-size: 15px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.shadow-text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 0.88rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background-color: white;
+  color: #123659; /* 紺色 */
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: white;
+  color: #123659; /* 紺色 */
+  transform: translateY(-2px);
+}
+
+/* 内部セクション用のボタン */
+.btn-internal {
+  background-color: #123659; /* 紺色 */
+  color: white;
+  border: 1px solid transparent;
+  font-size: 0.88rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-internal:hover {
+  background-color: #1a4978; /* 少し明るい紺色 */
+  transform: translateY(-2px);
+}
+
+.btn-secondary-internal {
+  background-color: transparent;
+  border: 1px solid #123659; /* 紺色 */
+  color: #123659; /* 紺色 */
+}
+
+.btn-secondary-internal:hover {
+  background-color: #123659; /* 紺色 */
+  color: white;
+  transform: translateY(-2px);
+}
+
+.section {
+  padding: 6rem 0;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  text-align: center;
+  position: relative;
+  letter-spacing: 0.5px;
+  color: #123659; /* 紺色 */
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: #123659; /* 紺色 */
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.07);
+}
+
+.nav-link {
+  color: #4b5563;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-link:hover {
+  color: #123659; /* 紺色 */
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: #123659; /* 紺色 */
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Navigation banner */
+.nav-banner {
+  background-color: white;
+  padding: 0.75rem 1.5rem;
+  display: inline-block;
+}
+
+.navbar {
+  background-color: rgb(var(--background));
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0.75rem 0;
+}
+
+/* Todo list styles */
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.todo-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.todo-checkbox {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 0.75rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+}
+
+.todo-checkbox::after {
+  content: '';
+  display: none;
+  position: absolute;
+  left: 5.5px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+input[type="checkbox"]:checked + .todo-checkbox {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+input[type="checkbox"]:checked + .todo-checkbox::after {
+  display: block;
+}
+
+.todo-text {
+  color: var(--text-color);
+}
+
+.todo-completed {
+  color: #999;
+  text-decoration: line-through;
+}
+
+.todo-button {
+  color: #ff5555;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  opacity: 0.8;
+  transition: all 0.2s;
+}
+
+.todo-button:hover {
+  opacity: 1;
+}
+
+.todo-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  background-color: white;
+  font-size: 15px;
+}
+
+.todo-add-button {
+  padding: 0.7rem 1.25rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.todo-add-button:hover {
+  background-color: #0f2a47;
+}
+
+/* スキルカードのホバーエフェクト */
+.skill-card {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+}
+        
+.skill-card:hover {
+  background-color: #f8f8f8;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
